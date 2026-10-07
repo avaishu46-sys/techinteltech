@@ -2,7 +2,9 @@
 import { useState } from "react";
 import SectionLabel from "../components/SectionLabel";
 
-const API_URL = import.meta.env.VITE_API_URL || "http://localhost:5000/api";
+const UNSUBSCRIBE_API_URL =
+  (import.meta.env.DEV && import.meta.env.VITE_UNSUBSCRIBE_API_URL) ||
+  `${import.meta.env.BASE_URL}api/unsubscribe.php`;
 
 function Unsubscribe() {
   const [email, setEmail] = useState("");
@@ -17,7 +19,7 @@ function Unsubscribe() {
     setMessage("");
 
     try {
-      const res = await fetch(`${API_URL}/unsubscribe`, {
+      const res = await fetch(UNSUBSCRIBE_API_URL, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ email: email.trim() }),
@@ -61,18 +63,18 @@ function Unsubscribe() {
         />
 
         <div className="relative mx-auto max-w-6xl px-6 text-center lg:px-8">
-          <div className="flex justify-center">
+          {/* <div className="flex justify-center">
             <SectionLabel>Email preferences</SectionLabel>
-          </div>
+          </div> */}
 
           <div className="mx-auto mt-6 flex items-center justify-center gap-3">
-            <span className="h-px w-8 bg-teal-500" />
+            {/* <span className="h-px w-8 bg-teal-500" /> */}
 
-            <span className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-600">
+            {/* <span className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-600">
               Manage your preferences
-            </span>
+            </span> */}
 
-            <span className="h-px w-8 bg-teal-500" />
+            {/* <span className="h-px w-8 bg-teal-500" /> */}
           </div>
 
           <h1 className="mt-5 text-4xl font-bold tracking-[-0.03em] text-slate-950 sm:text-5xl lg:text-6xl">
@@ -80,8 +82,8 @@ function Unsubscribe() {
           </h1>
 
           <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
-            We're sorry to see you go. Enter your email address below and
-            we'll remove it from our mailing list.
+            We're sorry to see you go. Enter your email address below to record
+            your unsubscribe request.
           </p>
         </div>
       </section>
@@ -127,12 +129,13 @@ function Unsubscribe() {
                     </div>
 
                     <h2 className="mt-7 text-2xl font-bold tracking-tight text-slate-950 sm:text-3xl">
-                      You've been unsubscribed
+                      Your request has been recorded
                     </h2>
 
                     <p className="mx-auto mt-4 max-w-md text-sm leading-7 text-slate-600 sm:text-base">
-                      Your email has been removed from our mailing list. It may
-                      take a few days for the change to take full effect.
+                      Your email address has been added to our unsubscribe
+                      requests. If you receive email through another service,
+                      that mailing list may need to be updated separately.
                     </p>
 
                     <button
@@ -250,7 +253,7 @@ function Unsubscribe() {
                               : undefined
                           }
                           className="w-full rounded-xl border border-slate-300 bg-white py-3.5 pl-12 pr-4 text-slate-900 outline-none transition placeholder:text-slate-400 hover:border-slate-400 focus:border-teal-500 focus:ring-4 focus:ring-teal-500/10"
-                          placeholder="you@company.com"
+                          placeholder="name@company.com"
                         />
                       </div>
                     </div>

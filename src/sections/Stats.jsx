@@ -17,10 +17,10 @@ const CountUpAnimated = ({ end, prefix = "", suffix = "", duration = 2000, isVis
     const animate = (timestamp) => {
       if (!startTime) startTime = timestamp;
       const progress = Math.min((timestamp - startTime) / duration, 1);
-      
+
       // Easing function (easeOutExpo) for smooth slowdown towards the end
       const easeProgress = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
-      
+
       setCount(Math.floor(easeProgress * end));
 
       if (progress < 1) {
@@ -106,20 +106,20 @@ function Stats() {
     >
       <div
         aria-hidden="true"
-        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(0,229,255,0.16)_0%,transparent_55%)]"
+        className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,rgba(45,212,191,0.16)_0%,transparent_55%)]"
       />
 
       <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
         <div className="grid gap-10 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,2fr)] lg:items-center lg:gap-14">
           <div className="border-b border-white/15 pb-8 lg:border-b-0 lg:border-r lg:pb-0 lg:pr-10">
-            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-cyan-300">
+            <p className="text-[11px] font-bold uppercase tracking-[0.18em] text-teal-400">
               Our impact
             </p>
             <h2 className="mt-3 text-2xl font-bold text-white sm:text-3xl">
               Built for measurable reach
             </h2>
             <Reveal>
-              <div className="mt-8 border-l-2 border-teal-300 pl-5">
+              <div className="mt-8 border-l-2 border-teal-400 pl-5">
                 <div className="whitespace-nowrap text-6xl font-extrabold tracking-tight text-white tabular-nums sm:text-7xl lg:text-6xl xl:text-8xl">
                   <CountUpAnimated
                     end={stats[0].value}
@@ -129,7 +129,7 @@ function Stats() {
                     compact={stats[0].formattedDisplay}
                   />
                 </div>
-                <p className="mt-2 max-w-xs text-sm font-medium leading-6 text-cyan-100/70">
+                <p className="mt-2 max-w-xs text-sm font-medium leading-6 text-slate-400">
                   {stats[0].label}
                 </p>
               </div>
@@ -148,7 +148,7 @@ function Stats() {
                         : ""
                   }`}
                 >
-                  <div className="whitespace-nowrap text-4xl font-extrabold tracking-tight text-cyan-300 tabular-nums sm:text-5xl">
+                  <div className="whitespace-nowrap text-4xl font-extrabold tracking-tight text-teal-400 tabular-nums sm:text-5xl">
                     <CountUpAnimated
                       end={stat.value}
                       suffix={stat.suffix}
@@ -156,7 +156,7 @@ function Stats() {
                       duration={2200}
                     />
                   </div>
-                  <p className="mt-3 max-w-40 text-xs font-medium leading-5 text-cyan-100/70 sm:text-sm">
+                  <p className="mt-3 max-w-40 text-xs font-medium leading-5 text-slate-400 sm:text-sm">
                     {stat.label}
                   </p>
                 </div>

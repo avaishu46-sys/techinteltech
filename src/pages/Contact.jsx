@@ -1,128 +1,3 @@
-// import {
-//   Mail,
-//   MapPin,
-//   ArrowUpRight,
-// } from "lucide-react";
-
-// import SectionLabel from "../components/SectionLabel";
-// import SectionHeading from "../components/SectionHeading";
-// import ContactForm from "../components/ContactForm";
-// import Reveal from "../components/Reveal";
-
-// function Contact() {
-//   return (
-//     <>
-
-//       <main>
-
-//         {/* HERO */}
-//         <section className="bg-slate-950 pt-40 text-white">
-//           <div className="mx-auto max-w-7xl px-6 pb-24 lg:px-8">
-
-//             <SectionLabel>
-//               Contact us
-//             </SectionLabel>
-
-//             <h1 className="max-w-5xl text-4xl font-bold tracking-[-0.05em] sm:text-6xl lg:text-8xl">
-//               Let's talk about
-//               <span className="block text-teal-400">
-//                 what's next.
-//               </span>
-//             </h1>
-
-//             <p className="mt-8 max-w-2xl text-base leading-7 text-slate-400 sm:text-lg">
-//               Have a campaign idea, a technology marketing challenge or simply
-//               want to learn more about TechIntel? We'd love to hear from you.
-//             </p>
-
-//           </div>
-//         </section>
-
-//         {/* CONTACT */}
-//         <section className="bg-slate-50 py-20 lg:py-28">
-//           <div className="mx-auto grid min-w-0 max-w-7xl grid-cols-1 gap-12 px-6 lg:grid-cols-[.7fr_1.3fr] lg:px-8">
-
-//             {/* Information */}
-//             <Reveal className="min-w-0">
-//               <div>
-//                 <SectionHeading
-//                   label="Start a conversation"
-//                   title="Tell us what you're working on."
-//                   description="Share a few details and our team will get back to you."
-//                 />
-
-//                 <div className="mt-10 space-y-5">
-
-//                   <a
-//                     href="mailto:contact@techintel.tech"
-//                     className="flex items-center gap-4 rounded-2xl border border-slate-200 bg-white p-5 transition hover:border-teal-300"
-//                   >
-//                     <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-teal-50">
-//                       <Mail
-//                         size={19}
-//                         className="text-teal-600"
-//                       />
-//                     </div>
-
-//                     <div>
-//                       <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
-//                         Email
-//                       </p>
-
-//                       <p className="mt-1 text-sm font-semibold text-slate-950">
-//                         contact@techintel.tech
-//                       </p>
-//                     </div>
-
-//                     <ArrowUpRight
-//                       size={17}
-//                       className="ml-auto text-slate-400"
-//                     />
-//                   </a>
-
-//                   <div className="flex gap-4 rounded-2xl border border-slate-200 bg-white p-5">
-//                     <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-teal-50">
-//                       <MapPin
-//                         size={19}
-//                         className="text-teal-600"
-//                       />
-//                     </div>
-
-//                     <div>
-//                       <p className="text-xs font-semibold uppercase tracking-wider text-slate-400">
-//                         Locations
-//                       </p>
-
-//                       <p className="mt-1 text-sm leading-6 text-slate-600">
-//                         Pune, India
-//                         <br />
-//                         Delaware, USA
-//                       </p>
-//                     </div>
-//                   </div>
-
-//                 </div>
-//               </div>
-//             </Reveal>
-
-//             {/* Form */}
-//             <Reveal delay={0.15} className="min-w-0">
-//               <ContactForm />
-//             </Reveal>
-
-//           </div>
-//         </section>
-
-//       </main>
-
-//     </>
-//   );
-// }
-
-// export default Contact;
-
-
-
 import { useEffect, useRef, useState } from "react";
 import {
   Mail,
@@ -151,9 +26,16 @@ const highlights = [
 ];
 
 const locations = [
-  { city: "Delaware", country: "USA", note: "Registered office" },
-  { city: "Pune", country: "India", note: "Delivery & operations" },
-  
+  {
+    city: "Delaware",
+    country: "USA",
+    address: "16192 Coastal Hwy, Lewes, Delaware 19958, USA",
+  },
+  {
+    city: "Pune",
+    country: "India",
+    address: "Office No. 605, Verdant 84, Koregaon Park, Pune - 411036",
+  },
 ];
 
 const nextSteps = [
@@ -310,223 +192,6 @@ function useInView(threshold = 0.3) {
 /* Graphics                                                            */
 /* ------------------------------------------------------------------ */
 
-/** Hero: floating chat window with typing indicator, chart card and sparkles */
-function ChatGraphic() {
-  const star = (x, y, r = 8) =>
-    `M${x} ${y - r} L${x + r * 0.25} ${y - r * 0.25} L${x + r} ${y} L${x + r * 0.25} ${y + r * 0.25} L${x} ${y + r} L${x - r * 0.25} ${y + r * 0.25} L${x - r} ${y} L${x - r * 0.25} ${y - r * 0.25} Z`;
-
-  const bars = [24, 38, 30, 52, 64];
-
-  return (
-    <svg
-      // viewBox="0 0 460 420"
-      // className="h-full w-full"
-      // role="img"
-      // aria-label="Illustration of a chat conversation with a team member"
-    >
-      {/* <defs>
-        <linearGradient id="ti-teal" x1="0" y1="0" x2="1" y2="1">
-          <stop offset="0%" stopColor="#5eead4" />
-          <stop offset="100%" stopColor="#14b8a6" />
-        </linearGradient>
-        <linearGradient id="ti-card" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="#111c33" />
-          <stop offset="100%" stopColor="#0b1220" />
-        </linearGradient>
-      </defs> */}
-
-      {/* Sparkles */}
-      {/* <path d={star(24, 70)} fill="#5eead4" className="ti-twinkle" />
-      <path
-        d={star(436, 210, 6)}
-        fill="#2dd4bf"
-        className="ti-twinkle"
-        style={{ animationDelay: "-1.2s" }}
-      />
-      <path
-        d={star(18, 330, 5)}
-        fill="#99f6e4"
-        className="ti-twinkle"
-        style={{ animationDelay: "-2.1s" }}
-      /> */}
-
-      {/* <g className="ti-float"> */}
-        {/* Back card */}
-        {/* <rect
-          x="70"
-          y="52"
-          width="320"
-          height="250"
-          rx="22"
-          fill="#0b1220"
-          stroke="#2dd4bf"
-          strokeOpacity="0.18"
-          transform="rotate(-6 230 177)"
-        /> */}
-
-        {/* Main chat window */}
-        {/* <rect
-          x="50"
-          y="70"
-          width="340"
-          height="262"
-          rx="22"
-          fill="url(#ti-card)"
-          stroke="#2dd4bf"
-          strokeOpacity="0.3"
-        /> */}
-
-        {/* Header */}
-        {/* <circle cx="88" cy="102" r="15" fill="url(#ti-teal)" />
-        <text
-          x="88"
-          y="106"
-          textAnchor="middle"
-          fontSize="11"
-          fontWeight="700"
-          fill="#042f2e"
-        >
-          TI
-        </text>
-        <rect x="112" y="93" width="96" height="7" rx="3.5" fill="#e2e8f0" opacity="0.85" />
-        <rect x="112" y="107" width="62" height="5" rx="2.5" fill="#64748b" />
-        <circle cx="366" cy="102" r="9" fill="#2dd4bf" fillOpacity="0.3" className="ti-pulse" />
-        <circle cx="366" cy="102" r="4" fill="#2dd4bf" />
-        <line x1="50" y1="128" x2="390" y2="128" stroke="#1e293b" /> */}
-
-        {/* Incoming message */}
-        {/* <rect x="70" y="144" width="196" height="54" rx="14" fill="#1e293b" />
-        <rect x="86" y="161" width="154" height="6" rx="3" fill="#94a3b8" opacity="0.75" />
-        <rect x="86" y="175" width="104" height="6" rx="3" fill="#94a3b8" opacity="0.45" /> */}
-
-        {/* Outgoing message */}
-        {/* <rect x="150" y="210" width="220" height="54" rx="14" fill="url(#ti-teal)" />
-        <rect x="166" y="227" width="172" height="6" rx="3" fill="#042f2e" opacity="0.65" />
-        <rect x="166" y="241" width="118" height="6" rx="3" fill="#042f2e" opacity="0.4" /> */}
-
-        {/* Typing indicator */}
-        {/* <rect x="70" y="278" width="72" height="34" rx="17" fill="#1e293b" />
-        {[93, 106, 119].map((cx, i) => (
-          <circle
-            key={cx}
-            cx={cx}
-            cy="295"
-            r="3.5"
-            fill="#2dd4bf"
-            className="ti-dot"
-            style={{ animationDelay: `${i * 0.18}s` }}
-          />
-        ))} */}
-      {/* </g> */}
-
-      {/* Delivered badge */}
-      {/* <g className="ti-float" style={{ animationDelay: "-2s" }}>
-        <circle cx="398" cy="62" r="26" fill="#2dd4bf" fillOpacity="0.25" className="ti-pulse" />
-        <circle cx="398" cy="62" r="21" fill="url(#ti-teal)" stroke="#0f172a" strokeWidth="3" />
-        <path
-          d="M388 62 l7 7 l13 -14"
-          fill="none"
-          stroke="#042f2e"
-          strokeWidth="3.2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </g> */}
-
-      {/* Growth chart card */}
-      {/* <g className="ti-float" style={{ animationDelay: "-3.5s" }}>
-        <rect
-          x="296"
-          y="282"
-          width="144"
-          height="104"
-          rx="16"
-          fill="#0f172a"
-          stroke="#2dd4bf"
-          strokeOpacity="0.4"
-        />
-        <rect x="314" y="300" width="52" height="5" rx="2.5" fill="#64748b" />
-        <rect x="314" y="311" width="30" height="4" rx="2" fill="#334155" />
-        {bars.map((h, i) => (
-          <rect
-            key={i}
-            x={316 + i * 22}
-            y={370 - h * 0.75}
-            width="12"
-            height={h * 0.75}
-            rx="3"
-            fill="url(#ti-teal)"
-            className="ti-bar"
-            style={{ animationDelay: `${i * 0.2}s` }}
-          />
-        ))}
-      </g> */}
-    </svg>
-  );
-}
-
-function RouteMap() {
-  return (
-    <svg
-      viewBox="0 0 300 120"
-      className="h-auto w-full"
-      role="img"
-      aria-label="Route between Delaware, USA and Pune, India"
-    >
-      <defs>
-        <pattern id="ti-dots" width="10" height="10" patternUnits="userSpaceOnUse">
-          <circle cx="1.5" cy="1.5" r="1" fill="#cbd5e1" />
-        </pattern>
-        <linearGradient id="ti-arc" x1="0" y1="0" x2="1" y2="0">
-          <stop offset="0%" stopColor="#14b8a6" />
-          <stop offset="100%" stopColor="#0d9488" />
-        </linearGradient>
-      </defs>
-
-      <rect width="300" height="120" rx="12" fill="#f8fafc" />
-      <rect width="300" height="120" rx="12" fill="url(#ti-dots)" opacity="0.8" />
-
-      <path
-        id="ti-route"
-        d="M55 78 Q150 -12 245 72"
-        fill="none"
-        stroke="url(#ti-arc)"
-        strokeWidth="2"
-        className="ti-dash"
-      />
-
-      {/* Travelling dot */}
-      <circle r="4" fill="#14b8a6">
-        <animateMotion dur="4s" repeatCount="indefinite" rotate="auto">
-          <mpath href="#ti-route" />
-        </animateMotion>
-      </circle>
-
-      {/* Delaware */}
-      <circle cx="55" cy="78" r="8" fill="#14b8a6" fillOpacity="0.35" className="ti-pulse" />
-      <circle cx="55" cy="78" r="5" fill="#0d9488" stroke="#fff" strokeWidth="2" />
-      <text x="55" y="104" textAnchor="middle" fontSize="10" fontWeight="600" fill="#475569">
-        Delaware
-      </text>
-
-      {/* Pune */}
-      <circle
-        cx="245"
-        cy="72"
-        r="8"
-        fill="#14b8a6"
-        fillOpacity="0.35"
-        className="ti-pulse"
-        style={{ animationDelay: "1.3s" }}
-      />
-      <circle cx="245" cy="72" r="5" fill="#0d9488" stroke="#fff" strokeWidth="2" />
-      <text x="245" y="98" textAnchor="middle" fontSize="10" fontWeight="600" fill="#475569">
-        Pune
-      </text>
-    </svg>
-  );
-}
-
 function PaperPlane() {
   return (
     <svg viewBox="0 0 120 80" className="h-full w-full" aria-hidden="true">
@@ -546,6 +211,10 @@ function PaperPlane() {
   );
 }
 
+/* ------------------------------------------------------------------ */
+/* Page                                                                */
+/* ------------------------------------------------------------------ */
+
 function Contact() {
   const [stepsRef, stepsInView] = useInView(0.25);
 
@@ -554,122 +223,107 @@ function Contact() {
       <style>{styles}</style>
 
       <main>
-        <section className="relative overflow-hidden bg-slate-950 pt-40 text-white">
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute inset-0 opacity-[0.07]"
-            style={{
-              backgroundImage:
-                "linear-gradient(to right, #fff 1px, transparent 1px), linear-gradient(to bottom, #fff 1px, transparent 1px)",
-              backgroundSize: "56px 56px",
-              maskImage:
-                "radial-gradient(ellipse at 30% 40%, black 20%, transparent 75%)",
-              WebkitMaskImage:
-                "radial-gradient(ellipse at 30% 40%, black 20%, transparent 75%)",
-            }}
-          />
+        <section className="relative overflow-hidden bg-[#02181d] pt-36 text-white lg:pt-30">
+  {/* Radial Teal Gradient Backgrounds (same as About) */}
+  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,#0b4f4a_0%,#052a2a_50%,#021416_100%)] pointer-events-none" />
+  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(45,212,191,0.25)_0%,transparent_60%)] pointer-events-none" />
+  <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(20,184,166,0.2)_0%,transparent_60%)] pointer-events-none" />
 
-          <div
-            aria-hidden="true"
-            className="ti-float-slow pointer-events-none absolute -right-32 top-10 h-96 w-96 rounded-full bg-teal-500/20 blur-3xl"
-          />
-          <div
-            aria-hidden="true"
-            className="ti-float-slow pointer-events-none absolute -left-24 bottom-0 h-72 w-72 rounded-full bg-teal-400/10 blur-3xl"
-            style={{ animationDelay: "-6s" }}
-          />
+  {/* Floating Blurred Orbs */}
+  <div className="ti-float-slow absolute top-10 left-10 h-72 w-72 rounded-full bg-teal-500/20 blur-[100px] pointer-events-none" />
+  <div
+    className="ti-float-slow absolute bottom-10 right-10 h-80 w-80 rounded-full bg-teal-400/20 blur-[120px] pointer-events-none"
+    style={{ animationDelay: "-6s" }}
+  />
 
-          <div
-            aria-hidden="true"
-            className="pointer-events-none absolute right-0 top-28 hidden h-[28rem] w-[31rem] xl:block 2xl:right-12"
+  <div className="relative mx-auto max-w-7xl px-6 pb-20 lg:px-8 lg:pb-24">
+    {/* <div
+      className="ti-rise inline-flex items-center gap-2 rounded-full border border-teal-500/30 bg-teal-950/60 px-3.5 py-1 text-xs font-semibold text-teal-300 mb-6 backdrop-blur-md"
+      style={{ animationDelay: ".05s" }}
+    >
+      <span>Contact us</span>
+    </div> */}
+
+    <p
+      className="ti-rise text-xs font-bold uppercase tracking-widest text-teal-400 mb-3"
+      style={{ animationDelay: ".1s" }}
+    >
+      Get in touch
+    </p>
+
+    <h1 className="max-w-5xl text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-7xl leading-[1.08]">
+      <span className="ti-rise block" style={{ animationDelay: ".15s" }}>
+        Let's talk about
+      </span>
+      <span className="ti-rise block" style={{ animationDelay: ".35s" }}>
+        <span className="inline-block bg-gradient-to-r from-teal-300 via-teal-400 to-teal-500 bg-clip-text pb-2 text-transparent">
+          what's next.
+        </span>
+      </span>
+    </h1>
+
+    <p
+      className="ti-rise mt-6 max-w-2xl text-base leading-relaxed text-slate-300 sm:text-lg"
+      style={{ animationDelay: ".55s" }}
+    >
+      Have a campaign idea, a technology marketing challenge or simply
+      want to learn more about TechIntel? We'd love to hear from you.
+    </p>
+
+    {/* Highlights */}
+    <ul className="mt-10 flex flex-wrap gap-3">
+      {highlights.map(({ icon: Icon, text }, i) => (
+        <li
+          key={text}
+          className="ti-rise flex items-center gap-2.5 rounded-full border border-teal-500/20 bg-slate-900/60 px-4 py-2 text-sm text-slate-300 backdrop-blur-md transition hover:border-teal-400/50 hover:bg-teal-400/10"
+          style={{ animationDelay: `${0.7 + i * 0.12}s` }}
+        >
+          <Icon size={15} className="text-teal-400" />
+          {text}
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  {/* Marquee ticker */}
+  <div
+    className="relative border-y border-teal-500/15 bg-slate-950/40 py-4"
+    aria-hidden="true"
+  >
+    <div
+      className="flex overflow-hidden"
+      style={{
+        maskImage:
+          "linear-gradient(to right, transparent, black 12%, black 88%, transparent)",
+        WebkitMaskImage:
+          "linear-gradient(to right, transparent, black 12%, black 88%, transparent)",
+      }}
+    >
+      <div className="ti-marquee flex shrink-0 items-center gap-10 pr-10">
+        {[...ticker, ...ticker].map((item, i) => (
+          <span
+            key={i}
+            className="flex shrink-0 items-center gap-10 whitespace-nowrap text-sm font-medium text-slate-400"
           >
-            <ChatGraphic />
-          </div>
-
-          <div className="relative mx-auto max-w-7xl px-6 pb-20 lg:px-8">
-            <div className="ti-rise" style={{ animationDelay: ".05s" }}>
-              <SectionLabel>Contact us</SectionLabel>
-            </div>
-
-            <h1 className="max-w-5xl text-4xl font-bold tracking-[-0.05em] sm:text-6xl lg:text-8xl">
-              <span
-                className="ti-rise block"
-                style={{ animationDelay: ".15s" }}
-              >
-                Let's talk about
-              </span>
-              <span
-                className="ti-rise block"
-                style={{ animationDelay: ".35s" }}
-              >
-                <span className="ti-shimmer inline-block bg-gradient-to-r from-teal-300 via-teal-500 to-teal-300 bg-clip-text pb-2 text-transparent">
-                  what's next.
-                </span>
-              </span>
-            </h1>
-
-            <p
-              className="ti-rise mt-8 max-w-2xl text-base leading-7 text-slate-400 sm:text-lg"
-              style={{ animationDelay: ".55s" }}
-            >
-              Have a campaign idea, a technology marketing challenge or simply
-              want to learn more about TechIntel? We'd love to hear from you.
-            </p>
-
-            {/* Highlights */}
-            <ul className="mt-10 flex flex-wrap gap-3">
-              {highlights.map(({ icon: Icon, text }, i) => (
-                <li
-                  key={text}
-                  className="ti-rise flex items-center gap-2.5 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-slate-300 backdrop-blur transition hover:border-teal-400/40 hover:bg-teal-400/10"
-                  style={{ animationDelay: `${0.7 + i * 0.12}s` }}
-                >
-                  <Icon size={15} className="text-teal-400" />
-                  {text}
-                </li>
-              ))}
-            </ul>
-          </div>
-
-          {/* Marquee ticker */}
-          <div
-            className="relative border-y border-white/10 bg-white/[0.02] py-4"
-            aria-hidden="true"
+            {item}
+            <Sparkles size={14} className="text-teal-400" />
+          </span>
+        ))}
+      </div>
+      <div className="ti-marquee flex shrink-0 items-center gap-10 pr-10">
+        {[...ticker, ...ticker].map((item, i) => (
+          <span
+            key={i}
+            className="flex shrink-0 items-center gap-10 whitespace-nowrap text-sm font-medium text-slate-400"
           >
-            <div
-              className="flex overflow-hidden"
-              style={{
-                maskImage:
-                  "linear-gradient(to right, transparent, black 12%, black 88%, transparent)",
-                WebkitMaskImage:
-                  "linear-gradient(to right, transparent, black 12%, black 88%, transparent)",
-              }}
-            >
-              <div className="ti-marquee flex shrink-0 items-center gap-10 pr-10">
-                {[...ticker, ...ticker].map((item, i) => (
-                  <span
-                    key={i}
-                    className="flex shrink-0 items-center gap-10 whitespace-nowrap text-sm font-medium text-slate-400"
-                  >
-                    {item}
-                    <Sparkles size={14} className="text-teal-400" />
-                  </span>
-                ))}
-              </div>
-              <div className="ti-marquee flex shrink-0 items-center gap-10 pr-10">
-                {[...ticker, ...ticker].map((item, i) => (
-                  <span
-                    key={i}
-                    className="flex shrink-0 items-center gap-10 whitespace-nowrap text-sm font-medium text-slate-400"
-                  >
-                    {item}
-                    <Sparkles size={14} className="text-teal-400" />
-                  </span>
-                ))}
-              </div>
-            </div>
-          </div>
-        </section>
+            {item}
+            <Sparkles size={14} className="text-teal-400" />
+          </span>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
 
         {/* CONTACT */}
         <section className="relative overflow-hidden bg-slate-50 py-20 lg:py-28">
@@ -689,7 +343,7 @@ function Contact() {
             <Reveal className="min-w-0">
               <div>
                 <SectionHeading
-                  label="Start a conversation"
+                  // label="Start a conversation"
                   title="Tell us what you're working on."
                   description="Share a few details and our team will get back to you."
                 />
@@ -744,11 +398,7 @@ function Contact() {
                       </p>
                     </div>
 
-                    <div className="mt-4 overflow-hidden rounded-xl border border-slate-100">
-                      <RouteMap />
-                    </div>
-
-                    <div className="mt-4 grid gap-3 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2">
+                    <div className="mt-4 space-y-3">
                       {locations.map((loc) => (
                         <div
                           key={loc.city}
@@ -757,8 +407,8 @@ function Contact() {
                           <p className="text-sm font-semibold text-slate-950">
                             {loc.city}, {loc.country}
                           </p>
-                          <p className="mt-0.5 text-xs text-slate-500">
-                            {loc.note}
+                          <p className="mt-1 text-sm leading-6 text-slate-600">
+                            {loc.address}
                           </p>
                         </div>
                       ))}
@@ -810,7 +460,7 @@ function Contact() {
 
                 {/* Availability note */}
                 <p className="mt-5 flex items-center justify-center gap-2 text-center text-sm text-slate-500">
-                  <span className="ti-blink h-2 w-2 rounded-full bg-teal-500" />
+                  <span className="" />
                   Our team is online and reading messages
                 </p>
               </div>

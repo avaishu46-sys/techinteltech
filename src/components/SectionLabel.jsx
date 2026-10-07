@@ -9,8 +9,6 @@ function SectionLabel({ children, number }) {
       transition={{ duration: 0.5 }}
       className="mb-4 flex items-center gap-3"
     >
-      <span className="h-2 w-2 rounded-full bg-teal-500" />
-
       {number && (
         <span className="text-xs font-semibold text-slate-400">
           {number}

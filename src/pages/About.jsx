@@ -64,16 +64,16 @@ function About() {
   ];
 
   return (
-    <main className="bg-slate-50 font-sans text-slate-900 antialiased selection:bg-cyan-500 selection:text-white">
-      {/* ================= HERO SECTION (MATCHING RESOURCE PAGE THEME) ================= */}
+    <main className="bg-slate-50 font-sans text-slate-900 antialiased selection:bg-teal-500 selection:text-white">
+      {/* ================= HERO SECTION ================= */}
       <section className="relative overflow-hidden bg-[#02181d] pt-36 pb-20 text-white lg:pt-40 lg:pb-28">
-        {/* Radial Cyan Wave Gradient Backgrounds */}
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,#005b6a_0%,#02232a_50%,#011115_100%)] pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(0,242,254,0.25)_0%,transparent_60%)] pointer-events-none" />
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(0,229,255,0.2)_0%,transparent_60%)] pointer-events-none" />
+        {/* Radial Teal Gradient Backgrounds */}
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,#0b4f4a_0%,#052a2a_50%,#021416_100%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,rgba(45,212,191,0.25)_0%,transparent_60%)] pointer-events-none" />
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,rgba(20,184,166,0.2)_0%,transparent_60%)] pointer-events-none" />
 
         {/* Floating Blurred Orbs */}
-        <div className="absolute top-10 left-10 h-72 w-72 rounded-full bg-cyan-500/20 blur-[100px] pointer-events-none" />
+        <div className="absolute top-10 left-10 h-72 w-72 rounded-full bg-teal-500/20 blur-[100px] pointer-events-none" />
         <div className="absolute bottom-10 right-10 h-80 w-80 rounded-full bg-teal-400/20 blur-[120px] pointer-events-none" />
 
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
@@ -85,23 +85,23 @@ function About() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
               >
-                <div className="inline-flex items-center gap-2 rounded-full border border-cyan-500/30 bg-cyan-950/60 px-3.5 py-1 text-xs font-semibold text-cyan-300 mb-6 backdrop-blur-md">
-                  <Sparkles className="h-3.5 w-3.5 text-cyan-400" />
+                <div className="inline-flex items-center gap-2 rounded-full border border-teal-500/30 bg-teal-950/60 px-3.5 py-1 text-xs font-semibold text-teal-300 mb-6 backdrop-blur-md">
+                  {/* <Sparkles className="h-3.5 w-3.5 text-teal-400" /> */}
                   <span>About TechIntel</span>
                 </div>
 
-                <p className="text-xs font-bold uppercase tracking-widest text-cyan-400 mb-3">
+                <p className="text-xs font-bold uppercase tracking-widest text-teal-400 mb-3">
                   Our Mission & Vision
                 </p>
 
                 <h1 className="text-4xl font-extrabold tracking-tight text-white sm:text-5xl lg:text-7xl leading-[1.08]">
                   Making technology{" "}
-                  <span className="block bg-gradient-to-r from-cyan-300 via-teal-300 to-cyan-400 bg-clip-text text-transparent">
+                  <span className="block bg-gradient-to-r from-teal-300 via-teal-400 to-teal-500 bg-clip-text text-transparent">
                     easier to discover.
                   </span>
                 </h1>
 
-                <p className="mt-6 text-base text-cyan-100/80 leading-relaxed max-w-2xl sm:text-lg">
+                <p className="mt-6 text-base text-slate-300 leading-relaxed max-w-2xl sm:text-lg">
                   TechIntel brings together technology research, content, audience intelligence, and marketing execution to help B2B technology brands connect with the right decision-makers.
                 </p>
               </motion.div>
@@ -113,12 +113,12 @@ function About() {
                 initial={{ opacity: 0, scale: 0.95, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: 0.2 }}
-                className="rounded-3xl border border-cyan-500/25 bg-[#002b33]/60 p-7 backdrop-blur-md shadow-2xl relative overflow-hidden"
+                className="rounded-3xl border border-teal-500/25 bg-slate-900/60 p-7 backdrop-blur-md shadow-2xl relative overflow-hidden"
               >
-                <div className="absolute -right-8 -bottom-8 h-32 w-32 rounded-full bg-cyan-400/10 blur-2xl pointer-events-none" />
+                <div className="absolute -right-8 -bottom-8 h-32 w-32 rounded-full bg-teal-400/10 blur-2xl pointer-events-none" />
 
-                <h2 className="text-xs font-bold uppercase tracking-wider text-cyan-300/80 mb-6 flex items-center gap-2">
-                  <Globe2 className="h-4 w-4 text-cyan-400" /> Why TechIntel Matters
+                <h2 className="text-xs font-bold uppercase tracking-wider text-teal-300/80 mb-6 flex items-center gap-2">
+                  <Globe2 className="h-4 w-4 text-teal-400" /> Why TechIntel Matters
                 </h2>
 
                 <div className="space-y-4">
@@ -127,14 +127,14 @@ function About() {
                     return (
                       <div
                         key={item.title}
-                        className="flex items-start gap-3.5 rounded-2xl border border-cyan-500/15 bg-[#001c22]/70 p-3.5 transition duration-200 hover:border-cyan-400/40"
+                        className="flex items-start gap-3.5 rounded-2xl border border-teal-500/15 bg-slate-950/70 p-3.5 transition duration-200 hover:border-teal-400/40"
                       >
-                        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-cyan-500/20 text-cyan-300">
+                        <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-teal-500/20 text-teal-300">
                           <IconComp className="h-4 w-4" />
                         </div>
                         <div>
                           <p className="text-xs font-bold text-white">{item.title}</p>
-                          <p className="text-[11px] text-cyan-200/70 mt-0.5 leading-snug">
+                          <p className="text-[11px] text-slate-400 mt-0.5 leading-snug">
                             {item.desc}
                           </p>
                         </div>
@@ -176,7 +176,7 @@ function About() {
         </div>
       </section>
 
-      {/* ================= VALUES SECTION (ENHANCED CARDS & HOVER ANIMATIONS) ================= */}
+      {/* ================= VALUES SECTION ================= */}
       <section className="bg-slate-50 py-24 lg:py-32 border-y border-slate-200/60">
         <div className="mx-auto max-w-7xl px-6 lg:px-8">
           <SectionHeading
@@ -194,14 +194,14 @@ function About() {
                   <motion.div
                     whileHover={{ y: -6 }}
                     transition={{ duration: 0.2 }}
-                    className="group relative flex h-full flex-col justify-between rounded-3xl border border-slate-200 bg-white p-7 shadow-sm transition duration-300 hover:border-cyan-400 hover:shadow-xl"
+                    className="group relative flex h-full flex-col justify-between rounded-3xl border border-slate-200 bg-white p-7 shadow-sm transition duration-300 hover:border-teal-400 hover:shadow-xl"
                   >
                     <div>
-                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-cyan-50 text-cyan-600 transition duration-300 group-hover:bg-cyan-500 group-hover:text-white">
+                      <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-teal-50 text-teal-600 transition duration-300 group-hover:bg-teal-500 group-hover:text-white">
                         <Icon size={22} />
                       </div>
 
-                      <h3 className="mt-6 text-lg font-bold text-slate-950 group-hover:text-cyan-600 transition duration-200">
+                      <h3 className="mt-6 text-lg font-bold text-slate-950 group-hover:text-teal-600 transition duration-200">
                         {value.title}
                       </h3>
 
@@ -210,10 +210,10 @@ function About() {
                       </p>
                     </div>
 
-                    <div className="mt-6 pt-4 border-t border-slate-100 flex items-center gap-1 text-[11px] font-semibold text-cyan-600 opacity-0 group-hover:opacity-100 transition duration-200">
+                    {/* <div className="mt-6 pt-4 border-t border-slate-100 flex items-center gap-1 text-[11px] font-semibold text-teal-600 opacity-0 group-hover:opacity-100 transition duration-200">
                       <span>Learn more</span>
                       <ArrowUpRight className="h-3 w-3" />
-                    </div>
+                    </div> */}
                   </motion.div>
                 </Reveal>
               );
@@ -222,51 +222,51 @@ function About() {
         </div>
       </section>
 
-      {/* ================= STATS SECTION (DYNAMIC CARDS & WAVE BACKGROUND) ================= */}
-      <section className="relative overflow-hidden bg-[#02181d] py-24 text-white">
-        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,#005b6a_0%,#011115_100%)] pointer-events-none" />
+      {/* ================= STATS SECTION (currently disabled) ================= */}
+      {/* <section className="relative overflow-hidden bg-[#02181d] py-24 text-white">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,#0b4f4a_0%,#021416_100%)] pointer-events-none" />
 
         <div className="relative mx-auto max-w-7xl px-6 lg:px-8">
           <div className="grid gap-8 md:grid-cols-3 text-center md:text-left">
-            <div className="rounded-3xl border border-cyan-500/20 bg-[#002b33]/40 p-8 backdrop-blur-md shadow-xl transition duration-300 hover:border-cyan-400/40">
+            <div className="rounded-3xl border border-teal-500/20 bg-slate-900/40 p-8 backdrop-blur-md shadow-xl transition duration-300 hover:border-teal-400/40">
               <div className="text-4xl sm:text-5xl font-extrabold text-white">
                 <CountUp end={1000000} suffix="+" />
               </div>
-              <p className="mt-3 text-xs font-semibold uppercase tracking-wider text-cyan-300">
+              <p className="mt-3 text-xs font-semibold uppercase tracking-wider text-teal-400">
                 Technology Professionals Reached
               </p>
             </div>
 
-            <div className="rounded-3xl border border-cyan-500/20 bg-[#002b33]/40 p-8 backdrop-blur-md shadow-xl transition duration-300 hover:border-cyan-400/40">
-              <div className="text-4xl sm:text-5xl font-extrabold text-cyan-300">
+            <div className="rounded-3xl border border-teal-500/20 bg-slate-900/40 p-8 backdrop-blur-md shadow-xl transition duration-300 hover:border-teal-400/40">
+              <div className="text-4xl sm:text-5xl font-extrabold text-teal-400">
                 <CountUp end={500} suffix="+" />
               </div>
-              <p className="mt-3 text-xs font-semibold uppercase tracking-wider text-cyan-300">
+              <p className="mt-3 text-xs font-semibold uppercase tracking-wider text-teal-400">
                 Brands & Campaigns Supported
               </p>
             </div>
 
-            <div className="rounded-3xl border border-cyan-500/20 bg-[#002b33]/40 p-8 backdrop-blur-md shadow-xl transition duration-300 hover:border-cyan-400/40">
+            <div className="rounded-3xl border border-teal-500/20 bg-slate-900/40 p-8 backdrop-blur-md shadow-xl transition duration-300 hover:border-teal-400/40">
               <div className="text-4xl sm:text-5xl font-extrabold text-white">
                 <CountUp end={20} suffix="+" />
               </div>
-              <p className="mt-3 text-xs font-semibold uppercase tracking-wider text-cyan-300">
+              <p className="mt-3 text-xs font-semibold uppercase tracking-wider text-teal-400">
                 Technology Categories
               </p>
             </div>
           </div>
         </div>
-      </section>
+      </section> */}
 
       {/* ================= CALL TO ACTION ================= */}
-      <section className="bg-gradient-to-r from-teal-500 to-cyan-500">
+      <section className="bg-gradient-to-r from-teal-600 via-teal-500 to-teal-400">
         <div className="mx-auto max-w-7xl px-6 py-20 lg:px-8">
           <div className="flex flex-col gap-8 md:flex-row md:items-center md:justify-between">
             <div>
               <h2 className="text-3xl font-extrabold text-white sm:text-4xl tracking-tight">
                 Let's create something meaningful.
               </h2>
-              <p className="mt-2.5 max-w-xl text-sm leading-6 text-cyan-50 font-medium">
+              <p className="mt-2.5 max-w-xl text-sm leading-6 text-white/90 font-medium">
                 Tell us about your technology marketing challenge and explore how our insights can drive growth for your brand.
               </p>
             </div>

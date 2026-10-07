@@ -1,0 +1,5 @@
+Options -Indexes
+
+<FilesMatch "^(unsubscribe|recaptcha-verify|subscribe|contact)\.php$">
+    Require all granted
+</FilesMatch>

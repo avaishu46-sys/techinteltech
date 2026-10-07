@@ -11,6 +11,8 @@ node_modules
 dist
 dist-ssr
 *.local
+techintel-config.php
+private/
 
 # Editor directories and files
 .vscode/*

@@ -19,7 +19,7 @@ function Home() {
       <Stats />
       <Insights />
       {/* <CaseStudies /> */}
-      <Testimonials />
+      {/* <Testimonials /> */}
       <Newsletter />
       <FinalCTA />
     </>

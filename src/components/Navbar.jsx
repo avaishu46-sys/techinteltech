@@ -99,13 +99,6 @@ function Navbar() {
                           />
                         )}
                         <span className="relative z-10">{link.name}</span>
-                        {isActive && (
-                          <motion.span
-                            initial={{ scale: 0 }}
-                            animate={{ scale: 1 }}
-                            className="relative z-10 ml-2 h-1.5 w-1.5 rounded-full bg-white"
-                          />
-                        )}
                       </div>
                     )}
                   </NavLink>
@@ -119,8 +112,8 @@ function Navbar() {
                   isOnDarkBackground ? "text-slate-950" : "text-white"
                 }`}
               >
-                <span className="h-1.5 w-1.5 rounded-full bg-teal-500" />
-                <span>Explore TechIntel</span>
+                {/* <span className="h-1.5 w-1.5 rounded-full bg-teal-500" />
+                <span>Explore TechIntel</span> */}
               </div>
 
               <div
@@ -206,9 +199,6 @@ function Navbar() {
                               }`}
                             >
                               <span>{link.name}</span>
-                              {isActive && (
-                                <span className="h-1.5 w-1.5 rounded-full bg-white" />
-                              )}
                             </div>
                           )}
                         </NavLink>

@@ -67,7 +67,7 @@ function Services() {
             className="group flex w-fit items-center gap-2 text-sm font-semibold text-slate-950"
           >
             <span className="relative">
-              View all services
+              View all information
               <span className="absolute -bottom-0.5 left-0 h-px w-0 bg-teal-500 transition-all duration-300 group-hover:w-full" />
             </span>
             <ArrowUpRight
@@ -169,7 +169,7 @@ function Services() {
                 </ul>
 
                 <Link
-                  to="/services"
+                  to="/about"
                   className="group mt-10 inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-slate-950 transition hover:bg-teal-500 hover:text-white"
                 >
                   Learn more

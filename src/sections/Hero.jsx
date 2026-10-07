@@ -13,7 +13,7 @@ import {
 } from "lucide-react";
 import { Link } from "react-router-dom";
 
-import heroBgImage from "../assets/images/hero_1.avif";
+import heroBgImage from "../assets/images/hero_teal_1.png";
 import reserchImage from "../assets/cards/reserch.jfif";
 import fileTextImage from "../assets/cards/file.webp";
 import crosshairImage from "../assets/cards/crosshair.webp";
@@ -88,10 +88,9 @@ const STATEMENT =
   "We transform complex B2B technology offerings into scalable pipeline through research-backed content, high-precision decision-maker targeting, and full-funnel execution.";
 const WORDS = STATEMENT.split(" ");
 
-// Scroll timeline (0 -> 1 over the sticky area)
 const REVEAL_START = 0.22;
-const REVEAL_END = 0.88; // last word starts lighting up here
-const WORD_SPAN = 0.035; // each word's fade-in length
+const REVEAL_END = 0.88; 
+const WORD_SPAN = 0.035; 
 
 export default function Hero() {
   const containerRef = useRef(null);
@@ -158,7 +157,7 @@ export default function Hero() {
           className="absolute inset-x-0 top-0 z-10 mx-auto w-full max-w-5xl flex-col items-center px-6 pt-24 text-center sm:pt-28 lg:pt-32"
         >
           <div className="mb-5 inline-flex items-center gap-2.5 rounded-full border border-teal-300/30 bg-teal-950/40 px-4 py-2 backdrop-blur-md">
-            <Sparkles size={14} className="animate-pulse text-teal-300" />
+            {/* <Sparkles size={14} className="animate-pulse text-teal-300" /> */}
             <span className="text-xs font-bold uppercase tracking-[0.22em] text-teal-200">
               Demand Generation Engine
             </span>
