@@ -2,6 +2,7 @@ import { lazy, Suspense } from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import MainLayout from "./layouts/MainLayout";
+import LoadingScreen from "./components/LoadingScreen";
 
 const Home = lazy(() => import("./pages/Home"));
 const About = lazy(() => import("./pages/About"));
@@ -24,13 +25,7 @@ const Unsubscribe = lazy(() => import("./pages/unsubscribe"));
 function App() {
   return (
     <BrowserRouter>
-      <Suspense
-        fallback={
-          <div className="flex min-h-screen items-center justify-center bg-white text-sm font-medium text-slate-500" role="status">
-            Loading page...
-          </div>
-        }
-      >
+      <Suspense fallback={<LoadingScreen />}>
         <Routes>
           <Route element={<MainLayout />}>
           {/* Home */}

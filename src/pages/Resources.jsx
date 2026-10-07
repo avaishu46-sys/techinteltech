@@ -63,7 +63,7 @@ const CATEGORY_ICON_STYLES = {
 export default function Resources() {
   const [search, setSearch] = useState("");
   const [category, setCategory] = useState("All");
-  const [activeTab, setActiveTab] = useState("all"); // 'all', 'trending', 'ebooks'
+  const [activeTab, setActiveTab] = useState("all"); 
   const [currentPage, setCurrentPage] = useState(1);
   const [importedResources, setImportedResources] = useState([]);
   const [resourceLoadError, setResourceLoadError] = useState(false);
