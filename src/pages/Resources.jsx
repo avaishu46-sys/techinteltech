@@ -674,7 +674,7 @@ export default function Resources() {
             <div className="flex w-fit min-w-0 max-w-full shrink-0 items-center gap-1 overflow-x-auto rounded-xl bg-slate-200/70 p-1 sm:shrink">
               <button
                 onClick={() => { setActiveTab("all"); setCurrentPage(1); }}
-                className={`shrink-0 rounded-lg px-4 py-2 text-xs font-bold transition ${
+                className={`shrink-0 cursor-pointer rounded-lg px-4 py-2 text-xs font-bold transition ${
                   activeTab === "all"
                     ? "bg-white text-slate-950 shadow-sm"
                     : "text-slate-600 hover:text-slate-900"
@@ -684,7 +684,7 @@ export default function Resources() {
               </button>
               <button
                 onClick={() => { setActiveTab("trending"); setCurrentPage(1); }}
-                className={`inline-flex shrink-0 items-center gap-1.5 rounded-lg px-4 py-2 text-xs font-bold transition ${
+                className={`inline-flex shrink-0 cursor-pointer items-center gap-1.5 rounded-lg px-4 py-2 text-xs font-bold transition ${
                   activeTab === "trending"
                     ? "bg-white text-slate-950 shadow-sm"
                     : "text-slate-600 hover:text-slate-900"
@@ -695,7 +695,7 @@ export default function Resources() {
               </button>
               <button
                 onClick={() => { setActiveTab("ebooks"); setCurrentPage(1); }}
-                className={`shrink-0 rounded-lg px-4 py-2 text-xs font-bold transition ${
+                className={`shrink-0 cursor-pointer rounded-lg px-4 py-2 text-xs font-bold transition ${
                   activeTab === "ebooks"
                     ? "bg-white text-slate-950 shadow-sm"
                     : "text-slate-600 hover:text-slate-900"
@@ -718,10 +718,6 @@ export default function Resources() {
                       -
                       {Math.min(currentPage * itemsPerPage, filteredResources.length)}
                     </span>{" "}
-                    of{" "}
-                    <span className="font-semibold text-slate-950">
-                      {filteredResources.length}
-                    </span>{" "}
                     results
                   </>
                 )}
@@ -729,7 +725,7 @@ export default function Resources() {
               {(search || category !== "All" || activeTab !== "all") && (
                 <button
                   onClick={() => { setSearch(""); setCategory("All"); setActiveTab("all"); setCurrentPage(1); }}
-                  className="text-teal-600 hover:underline font-semibold"
+                  className="cursor-pointer text-teal-600 hover:underline font-semibold"
                 >
                   Clear filters
                 </button>
@@ -750,7 +746,7 @@ export default function Resources() {
                       animate={{ opacity: 1, y: 0 }}
                       exit={{ opacity: 0, scale: 0.95 }}
                       transition={{ duration: 0.2, delay: index * 0.04 }}
-                      className="group flex min-w-0 cursor-pointer flex-col justify-between overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-teal-400 hover:shadow-xl"
+                      className="group flex min-w-0 flex-col justify-between overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:border-teal-400 hover:shadow-xl"
                     >
                       <div>
                         {/* Image Thumbnail */}

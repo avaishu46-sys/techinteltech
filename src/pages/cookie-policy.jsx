@@ -235,8 +235,6 @@ function CookiePolicy() {
                     </table>
                   </div>
                 </div>
-
-
                 {/* COOKIE 2 */}
                 <div className="not-prose my-6 overflow-hidden rounded-xl border border-slate-200">
                   <div className="overflow-x-auto">

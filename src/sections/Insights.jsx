@@ -74,6 +74,7 @@ function Insights() {
             <Reveal
               key={resource.title}
               delay={index * 0.08}
+              className="h-full"
             >
               <ResourceCard resource={resource} linkTo="/resources" />
             </Reveal>
@@ -81,38 +82,30 @@ function Insights() {
         </div>
 
         <div className="mt-10">
-          <div className="grid gap-6 lg:grid-cols-[1fr_.45fr]">
-            <Reveal>
-              <div className="rounded-3xl bg-slate-950 p-8 text-white lg:p-10">
-                <p className="text-xs font-bold uppercase tracking-[0.2em] text-teal-400">
-                  More resources
-                </p>
+          <Reveal>
+            <div className="flex w-full flex-col items-center rounded-3xl bg-slate-950 p-8 text-center text-white lg:p-10">
+              <p className="text-xs font-bold uppercase tracking-[0.2em] text-teal-400">
+                More resources
+              </p>
 
-                <h3 className="mt-5 max-w-2xl text-3xl font-bold leading-tight sm:text-4xl">
-                  Research to help you make confident technology decisions.
-                </h3>
+              <h3 className="mt-5 max-w-2xl text-3xl font-bold leading-tight sm:text-4xl">
+                Research to help you make confident technology decisions.
+              </h3>
 
-                <p className="mt-4 max-w-xl text-sm leading-6 text-slate-400">
-                  Find expert guides and research on AI, enterprise technology,
-                  and the trends shaping business.
-                </p>
+              <p className="mt-4 max-w-xl text-sm leading-6 text-slate-400">
+                Find expert guides and research on AI, enterprise technology,
+                and the trends shaping business.
+              </p>
 
-                <Link
-                  to="/resources"
-                  className="mt-7 inline-flex items-center gap-2 rounded-full bg-teal-500 px-5 py-3 text-sm font-semibold transition hover:bg-teal-400"
-                >
-                  Browse all resources
-                  <ArrowUpRight size={16} />
-                </Link>
-              </div>
-            </Reveal>
-            <Reveal delay={0.14}>
-              <ResourceCard
-                resource={resources[3]}
-                linkTo="/resources"
-              />
-            </Reveal>
-          </div>
+              <Link
+                to="/resources"
+                className="mt-7 inline-flex items-center gap-2 rounded-full bg-teal-500 px-5 py-3 text-sm font-semibold transition hover:bg-teal-400"
+              >
+                Browse all resources
+                <ArrowUpRight size={16} />
+              </Link>
+            </div>
+          </Reveal>
         </div>
 
       </div>

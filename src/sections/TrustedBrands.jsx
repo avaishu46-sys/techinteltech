@@ -77,11 +77,9 @@ function TrustedBrands() {
         {/* =========================
             BOTTOM TRUST BADGE
         ========================== */}
-        <div className="mx-auto mt-12 flex max-w-fit items-center justify-center gap-3 rounded-full border border-slate-200 bg-white px-6 py-2.5 text-xs font-medium text-slate-600 shadow-sm">
-          {/* <span className="h-2 w-2 rounded-full bg-teal-500" /> */}
+        {/* <div className="mx-auto mt-12 flex max-w-fit items-center justify-center gap-3 rounded-full border border-slate-200 bg-white px-6 py-2.5 text-xs font-medium text-slate-600 shadow-sm">
           <span>Validated decision-makers across global tech stacks</span>
-          {/* <span className="h-2 w-2 rounded-full bg-teal-500" /> */}
-        </div>
+        </div> */}
       </div>
     </section>
   );

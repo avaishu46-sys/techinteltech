@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Linkedin, ArrowUp } from "lucide-react";
-import logo from "../assets/logos/tech-logo.png";
+import logo from "../assets/logos/TechIntel Gradient Tech Logo.png";
 import isoBadge from "../assets/logos/Untitled-design-11-removebg-preview.png";
 import footerBg from "../assets/images/footer_bg.jpg";
 
@@ -83,9 +83,9 @@ function Footer() {
                   target="_blank"
                   rel="noopener noreferrer"
                   aria-label="TechIntel on LinkedIn"
-                  className="inline-flex h-10 w-10 items-center justify-center rounded-full bg-teal-600 text-white transition-colors hover:bg-teal-700"
+                  className="inline-flex h-8 w-8 items-center justify-center rounded-full bg-teal-600 text-white transition-colors hover:bg-teal-700"
                 >
-                  <Linkedin size={28} fill="currentColor" strokeWidth={0} />
+                  <Linkedin size={21} fill="currentColor" strokeWidth={0} />
                 </a>
               </li>
             </ul>
@@ -114,7 +114,7 @@ function Footer() {
       <button
         onClick={scrollToTop}
         aria-label="Scroll to top"
-        className="fixed bottom-4 right-4 z-40 flex h-10 w-10 items-center justify-center rounded-full bg-red-500 text-white shadow-lg transition hover:bg-red-600"
+        className="fixed bottom-4 right-4 z-40 flex h-10 w-10 items-center justify-center rounded-full bg-teal-600 text-white shadow-lg transition hover:bg-teal-700"
       >
         <ArrowUp size={18} />
       </button>

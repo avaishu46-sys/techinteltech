@@ -36,7 +36,7 @@ function Accessibility() {
                     <a
                       href="https://techintel.tech/"
                       target="_blank"
-                      rel="noopener noreferrer"
+                      rel="noopener noreferrer" 
                     >
                       https://techintel.tech/
                     </a>{" "}
@@ -427,7 +427,7 @@ function Accessibility() {
 
         .legal-section a,
         .legal-intro a {
-          color: #3030f1;
+          color: #009689;
           text-decoration: none;
           word-break: break-word;
         }
@@ -475,7 +475,7 @@ function Accessibility() {
           width: 38px;
           height: 38px;
           border-radius: 50%;
-          background: #00b1e2;
+          background: #009689;
           color: #ffffff;
           font-size: 20px;
           font-weight: 700;
@@ -636,7 +636,7 @@ function Accessibility() {
           min-height: 46px;
           padding: 10px 18px;
           border-radius: 7px;
-          background: #cc1a1a;
+          background: #009689;
           color: #ffffff !important;
           font-size: 14px;
           font-weight: 600;
@@ -646,7 +646,7 @@ function Accessibility() {
         }
 
         .sidebar-button:hover {
-          background: #aa1515;
+          background: #00796f;
           transform: translateY(-2px);
         }
 
@@ -666,7 +666,7 @@ function Accessibility() {
           gap: 15px;
           padding: 14px 0;
           border-bottom: 1px solid #e9eef3;
-          color: #334155;
+          color: #009689;
           font-size: 14px;
           text-decoration: none;
           transition: color 0.2s ease;
@@ -678,11 +678,11 @@ function Accessibility() {
         }
 
         .sidebar-links a:hover {
-          color: #00a6d6;
+          color: #00796f;
         }
 
         .sidebar-links span {
-          color: #00b1e2;
+          color: #009689;
           font-size: 18px;
         }
 

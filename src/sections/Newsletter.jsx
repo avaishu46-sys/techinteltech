@@ -326,7 +326,7 @@ function Newsletter() {
                     <button
                       key={tab.id}
                       onClick={() => setActiveTab(tab.id)}
-                      className={`inline-flex items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-semibold transition-all duration-200 ${
+                      className={`inline-flex cursor-pointer items-center gap-1.5 rounded-xl px-3.5 py-2 text-xs font-semibold transition-all duration-200 ${
                         isActive
                           ? "bg-slate-900 text-white shadow-md"
                           : "bg-slate-100 text-slate-600 hover:bg-slate-200/70"
@@ -381,7 +381,7 @@ function Newsletter() {
                 <button
                   type="button"
                   onClick={() => setCadence("weekly")}
-                  className={`flex items-center justify-center gap-1.5 rounded-xl py-2 text-xs font-semibold transition-all ${
+                  className={`flex cursor-pointer items-center justify-center gap-1.5 rounded-xl py-2 text-xs font-semibold transition-all ${
                     cadence === "weekly"
                       ? "bg-white text-slate-900 shadow-sm"
                       : "text-slate-500 hover:text-slate-900"
@@ -393,7 +393,7 @@ function Newsletter() {
                 <button
                   type="button"
                   onClick={() => setCadence("monthly")}
-                  className={`flex items-center justify-center gap-1.5 rounded-xl py-2 text-xs font-semibold transition-all ${
+                  className={`flex cursor-pointer items-center justify-center gap-1.5 rounded-xl py-2 text-xs font-semibold transition-all ${
                     cadence === "monthly"
                       ? "bg-white text-slate-900 shadow-sm"
                       : "text-slate-500 hover:text-slate-900"
@@ -426,7 +426,7 @@ function Newsletter() {
                       whileTap={{ scale: 0.98 }}
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full inline-flex items-center justify-center gap-2 rounded-2xl bg-teal-600 py-3.5 text-xs font-semibold text-white shadow-lg shadow-teal-600/20 hover:bg-teal-700 transition-all disabled:cursor-not-allowed disabled:opacity-70"
+                      className="w-full inline-flex cursor-pointer items-center justify-center gap-2 rounded-2xl bg-teal-600 py-3.5 text-xs font-semibold text-white shadow-lg shadow-teal-600/20 hover:bg-teal-700 transition-all disabled:cursor-not-allowed disabled:opacity-70"
                     >
                       {isSubmitting ? (
                         <>

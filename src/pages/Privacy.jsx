@@ -2,65 +2,139 @@ import { useEffect, useRef, useState } from "react";
 import Navbar from "../components/Navbar";
 import SectionLabel from "../components/SectionLabel";
 
+function createStyledPolicyDocument(content) {
+  return `<!doctype html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+      </head>
+      <body>
+        ${content}
+        <style>
+          html body,
+          html body * {
+            font-family: "Poppins", ui-sans-serif, system-ui, sans-serif !important;
+          }
+
+          html body [data-custom-class],
+          html body [data-custom-class] * {
+            font-family: "Poppins", ui-sans-serif, system-ui, sans-serif !important;
+          }
+
+          html body > [data-custom-class="body"] {
+            margin-top: -120px !important;
+          }
+
+          html body a,
+          html body a * {
+            color: #009689 !important;
+          }
+
+          html body [data-custom-class="link"],
+          html body [data-custom-class="link"] * {
+            color: #009689 !important;
+          }
+
+          html body a:hover,
+          html body a:focus,
+          html body a:hover *,
+          html body a:focus *,
+          html body [data-custom-class="link"]:hover,
+          html body [data-custom-class="link"]:focus {
+            color: #00796f !important;
+          }
+
+          html body ul li::marker,
+          html body ol li::marker {
+            color: #009689 !important;
+          }
+        </style>
+      </body>
+    </html>`;
+}
+
 function Privacy() {
-  const termlyRef = useRef(null);
+  const policyFrameRef = useRef(null);
+  const [policyContent, setPolicyContent] = useState("");
+  const [policyFrameLoaded, setPolicyFrameLoaded] = useState(false);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    let timeout;
+    const controller = new AbortController();
+    let active = true;
 
-    const loadTermly = () => {
-      if (!termlyRef.current) return;
+    async function loadPolicy() {
+      try {
+        const response = await fetch(
+          `${import.meta.env.BASE_URL}api/privacy-policy.php`,
+          { signal: controller.signal },
+        );
 
-      setLoading(true);
-      setError(false);
-
-      const existingScript = document.getElementById("termly-jssdk");
-
-      if (existingScript) {
-        setTimeout(() => {
-          setLoading(false);
-        }, 500);
-      } else {
-        const script = document.createElement("script");
-
-        script.id = "termly-jssdk";
-        script.src = "https://app.termly.io/embed-policy.min.js";
-        script.async = true;
-
-        script.onload = () => {
-          setTimeout(() => {
-            setLoading(false);
-          }, 500);
-        };
-
-        script.onerror = () => {
-          setLoading(false);
-          setError(true);
-        };
-
-        document.body.appendChild(script);
-      }
-
-      timeout = setTimeout(() => {
-        setLoading(false);
-
-        if (
-          termlyRef.current &&
-          termlyRef.current.innerHTML.trim() === ""
-        ) {
-          setError(true);
+        if (!response.ok) {
+          throw new Error(`The privacy policy request failed (${response.status}).`);
         }
-      }, 10000);
-    };
 
-    loadTermly();
+        const result = await response.json();
+        if (typeof result.content !== "string" || result.content.length === 0) {
+          throw new Error("The privacy policy response was invalid.");
+        }
+
+        if (active) {
+          setPolicyContent(result.content);
+          setPolicyFrameLoaded(false);
+        }
+      } catch (loadError) {
+        if (controller.signal.aborted) return;
+        console.error("Unable to load the privacy policy.", loadError);
+        if (active) setError(true);
+      } finally {
+        if (active) setLoading(false);
+      }
+    }
+
+    loadPolicy();
 
     return () => {
-      clearTimeout(timeout);
+      active = false;
+      controller.abort();
     };
   }, []);
+
+  useEffect(() => {
+    if (!policyFrameLoaded) return undefined;
+
+    const frame = policyFrameRef.current;
+    const policyDocument = frame?.contentDocument;
+    if (!frame || !policyDocument?.documentElement || !policyDocument.body) {
+      return undefined;
+    }
+
+    let active = true;
+    const resizeFrame = () => {
+      if (!active) return;
+      const documentHeight = Math.max(
+        policyDocument.documentElement.scrollHeight,
+        policyDocument.body.scrollHeight,
+      );
+      frame.style.height = `${documentHeight}px`;
+    };
+
+    resizeFrame();
+    const observer = new ResizeObserver(resizeFrame);
+    observer.observe(policyDocument.documentElement);
+    observer.observe(policyDocument.body);
+    policyDocument.fonts?.ready.then(resizeFrame);
+
+    return () => {
+      active = false;
+      observer.disconnect();
+    };
+  }, [policyContent, policyFrameLoaded]);
 
   return (
     <>
@@ -77,7 +151,7 @@ function Privacy() {
               Legal
             </SectionLabel>
 
-            <h1 className="text-5xl font-bold tracking-tight sm:text-6xl">
+            <h1 className="text-4xl font-bold tracking-tight sm:text-6xl">
               Privacy Policy
             </h1>
 
@@ -168,241 +242,23 @@ function Privacy() {
                 Original Termly ID:
                 d57b5309-8c31-4c47-9b42-9752e9504c41
             ================================================== */}
-            <div
-              ref={termlyRef}
-              name="termly-embed"
-              data-id="d57b5309-8c31-4c47-9b42-9752e9504c41"
-              className={`termly-policy ${
-                loading || error ? "hidden" : "block"
-              }`}
-            />
+            {!loading && !error && policyContent && (
+              <iframe
+                ref={policyFrameRef}
+                title="Privacy Policy"
+                srcDoc={createStyledPolicyDocument(policyContent)}
+                sandbox="allow-same-origin allow-popups allow-popups-to-escape-sandbox"
+                onLoad={() => setPolicyFrameLoaded(true)}
+                className="block w-full border-0"
+                style={{ height: 400 }}
+              />
+            )}
 
           </article>
         </section>
       </main>
 
 
-      {/* =====================================================
-          TERMLY CUSTOM STYLES
-      ====================================================== */}
-      <style>{`
-
-        /* ===================================================
-           TERMLY CONTENT
-        ==================================================== */
-
-        .termly-policy {
-          width: 100%;
-          color: #475569;
-          line-height: 1.8;
-          overflow: hidden;
-        }
-
-        .termly-policy iframe {
-          transform: translateY(-120px);
-          margin-bottom: -120px;
-        }
-
-
-        /* ===================================================
-           ALL TERMLY LINKS
-        ==================================================== */
-
-        .termly-policy a,
-        .termly-policy a:link,
-        .termly-policy a:visited {
-
-          color: #9DE5DD !important;
-
-          text-decoration: underline !important;
-
-          text-underline-offset: 2px;
-
-          transition:
-            color 0.2s ease,
-            opacity 0.2s ease;
-        }
-
-
-        /* ===================================================
-           LINK HOVER
-        ==================================================== */
-
-        .termly-policy a:hover,
-        .termly-policy a:focus {
-
-          color: #78D5CC !important;
-
-          text-decoration: underline !important;
-        }
-
-
-        /* ===================================================
-           BULLET POINTS
-        ==================================================== */
-
-        .termly-policy ul {
-
-          list-style-type: disc !important;
-        }
-
-
-        .termly-policy ul li::marker {
-
-          color: #9DE5DD !important;
-        }
-
-
-        /* ===================================================
-           NESTED BULLET POINTS
-        ==================================================== */
-
-        .termly-policy ul ul {
-
-          list-style-type: circle !important;
-        }
-
-
-        .termly-policy ul ul li::marker {
-
-          color: #9DE5DD !important;
-        }
-
-
-        /* ===================================================
-           NUMBERED LISTS
-        ==================================================== */
-
-        .termly-policy ol {
-
-          list-style-type: decimal !important;
-        }
-
-
-        .termly-policy ol li::marker {
-
-          color: #9DE5DD !important;
-        }
-
-
-        /* ===================================================
-           TERMly TABLE LINKS
-        ==================================================== */
-
-        .termly-policy table a,
-        .termly-policy td a,
-        .termly-policy th a {
-
-          color: #9DE5DD !important;
-        }
-
-
-        .termly-policy table a:hover,
-        .termly-policy td a:hover,
-        .termly-policy th a:hover {
-
-          color: #78D5CC !important;
-        }
-
-
-        /* ===================================================
-           LINKS INSIDE HEADINGS
-        ==================================================== */
-
-        .termly-policy h1 a,
-        .termly-policy h2 a,
-        .termly-policy h3 a,
-        .termly-policy h4 a,
-        .termly-policy h5 a,
-        .termly-policy h6 a {
-
-          color: #9DE5DD !important;
-        }
-
-
-        /* ===================================================
-           EMAIL LINKS
-        ==================================================== */
-
-        .termly-policy a[href^="mailto:"] {
-
-          color: #9DE5DD !important;
-        }
-
-
-        /* ===================================================
-           ORDERED LIST LINK COLORS
-        ==================================================== */
-
-        .termly-policy ol li a {
-
-          color: #9DE5DD !important;
-        }
-
-
-        /* ===================================================
-           UNORDERED LIST LINK COLORS
-        ==================================================== */
-
-        .termly-policy ul li a {
-
-          color: #9DE5DD !important;
-        }
-
-
-        /* ===================================================
-           HIDE ANY FOOTER INJECTED INSIDE TERMLY
-        ==================================================== */
-
-        .termly-policy footer,
-        .termly-policy .footer {
-
-          display: none !important;
-        }
-
-
-        /* ===================================================
-           REMOVE UNNECESSARY BOTTOM SPACE
-        ==================================================== */
-
-        .termly-policy:last-child {
-
-          margin-bottom: 0 !important;
-        }
-
-
-        /* ===================================================
-           MOBILE
-        ==================================================== */
-
-        @media (max-width: 640px) {
-
-          .termly-policy {
-
-            font-size: 14px;
-
-            overflow-wrap: break-word;
-          }
-
-
-          .termly-policy a {
-
-            overflow-wrap: anywhere;
-          }
-
-
-          .termly-policy table {
-
-            display: block;
-
-            width: 100%;
-
-            overflow-x: auto;
-          }
-
-        }
-
-      `}</style>
     </>
   );
 }

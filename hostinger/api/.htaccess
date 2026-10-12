@@ -1,5 +1,5 @@
 Options -Indexes
 
-<FilesMatch "^(unsubscribe|recaptcha-verify|subscribe|contact)\.php$">
+<FilesMatch "^(unsubscribe|recaptcha-verify|subscribe|contact|privacy-policy)\.php$">
     Require all granted
 </FilesMatch>

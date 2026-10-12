@@ -19,10 +19,10 @@ function ResourceCard({
     <motion.article
       whileHover={{ y: -6 }}
       transition={{ duration: 0.25 }}
-      className="group overflow-hidden rounded-3xl border border-slate-200 bg-white"
+      className="group flex h-full flex-col overflow-hidden rounded-3xl border border-slate-200 bg-white shadow-sm transition-all duration-300 hover:border-teal-400 hover:shadow-xl"
     >
       {/* Image */}
-      <div className="relative aspect-[16/10] overflow-hidden bg-slate-100">
+      <div className="relative aspect-[16/9] overflow-hidden bg-slate-100">
         {image ? (
           <img
             src={image}
@@ -44,13 +44,13 @@ function ResourceCard({
       </div>
 
       {/* Content */}
-      <div className="p-6">
+      <div className="flex flex-1 flex-col p-6">
         <div className="mb-3 flex items-center gap-2 text-xs font-medium text-slate-400">
           <FileText size={14} />
           {type}
         </div>
 
-        <h3 className="text-xl font-bold leading-snug text-slate-950">
+        <h3 className="text-xl font-bold leading-snug text-slate-950 transition-colors duration-200 group-hover:text-teal-600">
           {title}
         </h3>
 
@@ -62,7 +62,7 @@ function ResourceCard({
 
         <Link
           to={linkTo || `/resources/${slug}`}
-          className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-slate-950"
+          className="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-semibold text-teal-600 transition hover:text-teal-700"
         >
           Explore Resource
 

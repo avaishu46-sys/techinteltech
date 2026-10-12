@@ -50,7 +50,7 @@ function Unsubscribe() {
       {/* =========================
           PAGE HEADER
       ========================== */}
-      <section className="relative overflow-hidden bg-white pt-32 pb-14 sm:pt-36 sm:pb-16">
+      <section className="relative overflow-hidden bg-white pt-32 pb-10 sm:pt-36 sm:pb-12">
         {/* Soft decorative background */}
         <div
           className="pointer-events-none absolute -right-32 -top-32 h-80 w-80 rounded-full bg-teal-500/5 blur-3xl"
@@ -58,7 +58,7 @@ function Unsubscribe() {
         />
 
         <div
-          className="pointer-events-none absolute -left-32 bottom-0 h-72 w-72 rounded-full bg-slate-200/60 blur-3xl"
+          className="pointer-events-none absolute -left-32 bottom-0 h-62 w-72 rounded-full bg-slate-200/60 blur-3xl"
           aria-hidden="true"
         />
 
@@ -67,7 +67,7 @@ function Unsubscribe() {
             <SectionLabel>Email preferences</SectionLabel>
           </div> */}
 
-          <div className="mx-auto mt-6 flex items-center justify-center gap-3">
+          <div className="mx-auto mt-0 flex items-center justify-center gap-3">
             {/* <span className="h-px w-8 bg-teal-500" /> */}
 
             {/* <span className="text-xs font-semibold uppercase tracking-[0.2em] text-teal-600">
@@ -77,11 +77,11 @@ function Unsubscribe() {
             {/* <span className="h-px w-8 bg-teal-500" /> */}
           </div>
 
-          <h1 className="mt-5 text-4xl font-bold tracking-[-0.03em] text-slate-950 sm:text-5xl lg:text-6xl">
+          <h1 className="mt-0 text-4xl font-bold tracking-[-0.03em] text-slate-950 sm:text-5xl lg:text-6xl">
             Unsubscribe
           </h1>
 
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
+          <p className="mx-auto mt-0 max-w-2xl text-base leading-8 text-slate-600 sm:text-lg">
             We're sorry to see you go. Enter your email address below to record
             your unsubscribe request.
           </p>
@@ -91,7 +91,7 @@ function Unsubscribe() {
       {/* =========================
           FORM SECTION
       ========================== */}
-      <section className="relative overflow-hidden bg-slate-50 py-12 sm:py-16 lg:py-20">
+      <section className="relative overflow-hidden bg-slate-50 pt-4 pb-12 sm:pt-6 sm:pb-16 lg:pt-8 lg:pb-20">
         <div className="relative mx-auto max-w-6xl px-6 lg:px-8">
           <div className="mx-auto max-w-xl">
 
@@ -322,7 +322,7 @@ function Unsubscribe() {
                           Unsubscribe
 
                           <svg
-                            viewBox="0 0 20 20"
+                            viewBox="0 0 10 10"
                             className="h-4 w-4 transition-transform group-hover:translate-x-0.5"
                             fill="none"
                             stroke="currentColor"
@@ -347,7 +347,7 @@ function Unsubscribe() {
             </div>
 
             {/* Support Card */}
-            <div className="mt-6 rounded-xl border border-slate-200 bg-white px-6 py-5 text-center shadow-sm">
+            {/* <div className="mt-6 rounded-xl border border-slate-200 bg-white px-6 py-5 text-center shadow-sm">
               <p className="text-sm text-slate-600">
                 Having trouble unsubscribing?
               </p>
@@ -372,13 +372,13 @@ function Unsubscribe() {
                   <path d="M7 5h8v8" />
                 </svg>
               </a>
-            </div>
+            </div> */}
 
             {/* Privacy Note */}
-            <p className="mt-6 text-center text-xs leading-6 text-slate-400">
+            {/* <p className="mt-6 text-center text-xs leading-6 text-slate-400">
               Your email address will only be used to process your
               unsubscribe request.
-            </p>
+            </p> */}
           </div>
         </div>
       </section>

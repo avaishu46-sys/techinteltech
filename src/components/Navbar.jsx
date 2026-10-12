@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Link, NavLink, useLocation } from "react-router-dom";
 import { Menu, X, ArrowUpRight, Sparkles } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import logo from "../assets/logos/tech-logo.png";
+import logo from "../assets/logos/TechIntel Gradient Tech Logo.png";
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -71,7 +71,7 @@ function Navbar() {
               <img
                 src={logo}
                 alt="TechIntel"
-                className="h-12 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.03] sm:h-14"
+                className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.03] sm:h-14"
               />
             </Link>
 
