@@ -11,17 +11,21 @@ MySQL table.
 2. Choose **reCAPTCHA v2** and **"I'm not a robot" Checkbox**.
 3. Add every production hostname, plus `localhost` and `127.0.0.1` if you will
    test locally.
-4. Copy the site key and secret key.
+4. Add `b2btechintel.netlify.app` as a hostname and copy the site key and
+   secret key.
 
 ## Configure the frontend
 
 The supplied public site key is configured as the frontend fallback. You can
 override it with `VITE_RECAPTCHA_SITE_KEY` before building if you rotate the
-key. The secret-key config has been created locally at
+key. On Netlify, set `VITE_CONTACT_API_URL` to
+`https://techintel.tech/api/contact.php` in the site's build environment. The
+production frontend defaults to the Hostinger endpoint; the environment
+variable can override it. The secret-key config has been created locally at
 `hostinger/private/recaptcha-config.php`; it is ignored by Git and must be
-uploaded separately to a private server directory. `VITE_CONTACT_API_URL`
-defaults to `/api/contact.php`; set it to the full HTTPS endpoint URL for
-local development when the PHP API is hosted on Hostinger.
+uploaded separately to a private server directory. For local development,
+set `VITE_CONTACT_API_URL` to the full HTTPS endpoint URL when the PHP API is
+hosted on Hostinger.
 
 Vite embeds the public site key in the built JavaScript. Never put the secret
 key in a `VITE_` variable or any frontend file.
@@ -41,12 +45,14 @@ return [
     'allowed_origins' => [
         'https://yourdomain.com',
         'https://www.yourdomain.com',
+        'https://b2btechintel.netlify.app',
         'http://localhost:5173',
         'http://127.0.0.1:5173',
     ],
     'allowed_hosts' => [
         'yourdomain.com',
         'www.yourdomain.com',
+        'b2btechintel.netlify.app',
         'localhost',
         '127.0.0.1',
     ],
@@ -62,12 +68,17 @@ For local development, set the endpoint's full URL in `.env.development.local`
 as `VITE_CONTACT_API_URL`, ensure the local Vite origins are in
 `allowed_origins`, and restart Vite. Never commit `.env.development.local`.
 
-The endpoint also reads `techintel-config.php` from the private directory for
+The PHP endpoint's CORS allowlist must include
+`https://b2btechintel.netlify.app`; the checked-in endpoint already includes
+it. Upload the updated `hostinger/api/contact.php` to Hostinger after pulling
+this change. The endpoint also reads `techintel-config.php` from the private directory for
 its MySQL credentials. It inserts into the existing `contact_queries` table
 using `first_name`, `last_name`, `email`, `company_name`, `phone`, `message`,
 `ip_address`, and `created_at`. Optional company and phone inputs are stored
 as empty strings.
 
-Build and deploy the frontend with the configured site key and upload the PHP
-endpoint. The form displays success only after CAPTCHA verification and
-database insertion both succeed.
+Build and deploy the frontend on Netlify with the configured public site key
+and upload the PHP endpoint to Hostinger. The private reCAPTCHA config's
+`allowed_hosts` must include `b2btechintel.netlify.app`, and the reCAPTCHA
+Admin Console must have that hostname registered. The form displays success
+only after CAPTCHA verification and database insertion both succeed.

@@ -2,6 +2,12 @@ import { useEffect, useRef, useState } from "react";
 import Navbar from "../components/Navbar";
 import SectionLabel from "../components/SectionLabel";
 
+const PRIVACY_POLICY_API_URL =
+  import.meta.env.VITE_PRIVACY_POLICY_API_URL ||
+  (import.meta.env.DEV
+    ? `${import.meta.env.BASE_URL}api/privacy-policy.php`
+    : "https://techintel.tech/api/privacy-policy.php");
+
 function createStyledPolicyDocument(content) {
   return `<!doctype html>
     <html lang="en">
@@ -71,7 +77,7 @@ function Privacy() {
     async function loadPolicy() {
       try {
         const response = await fetch(
-          `${import.meta.env.BASE_URL}api/privacy-policy.php`,
+          PRIVACY_POLICY_API_URL,
           { signal: controller.signal },
         );
 

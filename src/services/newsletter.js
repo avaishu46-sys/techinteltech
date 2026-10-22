@@ -1,6 +1,8 @@
 const SUBSCRIBE_API_URL =
-  (import.meta.env.DEV && import.meta.env.VITE_NEWSLETTER_API_URL) ||
-  `${import.meta.env.BASE_URL}api/subscribe.php`;
+  import.meta.env.VITE_NEWSLETTER_API_URL ||
+  (import.meta.env.DEV
+    ? `${import.meta.env.BASE_URL}api/subscribe.php`
+    : "https://techintel.tech/api/subscribe.php");
 
 export async function createNewsletterSubscription(email, cadence = "weekly") {
   const response = await fetch(SUBSCRIBE_API_URL, {

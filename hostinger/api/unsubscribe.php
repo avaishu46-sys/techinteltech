@@ -18,6 +18,7 @@ function respond(int $status, array $payload): void
 }
 
 $allowedOrigins = [
+    'https://b2btechintel.netlify.app',
     'http://localhost:5173',
     'http://127.0.0.1:5173',
     'https://hbnvlbq7-5173.inc1.devtunnels.ms',

@@ -13,6 +13,7 @@ function respond(int $status, array $payload): void
 $allowedOrigins = [
     'https://techintel.tech',
     'https://www.techintel.tech',
+    'https://b2btechintel.netlify.app',
     'http://techintel.tech',
     'http://www.techintel.tech',
     'http://localhost:5173',

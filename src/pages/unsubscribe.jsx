@@ -3,8 +3,10 @@ import { useState } from "react";
 import SectionLabel from "../components/SectionLabel";
 
 const UNSUBSCRIBE_API_URL =
-  (import.meta.env.DEV && import.meta.env.VITE_UNSUBSCRIBE_API_URL) ||
-  `${import.meta.env.BASE_URL}api/unsubscribe.php`;
+  import.meta.env.VITE_UNSUBSCRIBE_API_URL ||
+  (import.meta.env.DEV
+    ? `${import.meta.env.BASE_URL}api/unsubscribe.php`
+    : "https://techintel.tech/api/unsubscribe.php");
 
 function Unsubscribe() {
   const [email, setEmail] = useState("");

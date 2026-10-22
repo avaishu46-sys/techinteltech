@@ -16,9 +16,12 @@ After changing `.env.development.local`, restart the Vite dev server. Test with 
 you control, then verify the row in phpMyAdmin. The request will insert the
 email into the Hostinger database even though the React website is still local.
 
-When the frontend is deployed on the same Hostinger domain, remove
-`VITE_UNSUBSCRIBE_API_URL` from the production environment so the default
-same-domain `/api/unsubscribe.php` URL is used.
+When the frontend is deployed on Netlify, set the API URLs in the Netlify
+build environment to the matching Hostinger endpoints:
+`VITE_CONTACT_API_URL=https://techintel.tech/api/contact.php`,
+`VITE_NEWSLETTER_API_URL=https://techintel.tech/api/subscribe.php`, and
+`VITE_UNSUBSCRIBE_API_URL=https://techintel.tech/api/unsubscribe.php`.
+The Netlify origin must also be allowed by the PHP endpoints' CORS allowlists.
 
 ## Add the private database config
 

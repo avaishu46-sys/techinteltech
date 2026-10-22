@@ -14,8 +14,10 @@ const RECAPTCHA_SITE_KEY =
   import.meta.env.VITE_RECAPTCHA_SITE_KEY ||
   "6LdwT-MtAAAAADhOUuFkUuDtklE2Mx4wuVYwkSb4";
 const CONTACT_API_URL =
-  (import.meta.env.DEV && import.meta.env.VITE_CONTACT_API_URL) ||
-  `${import.meta.env.BASE_URL}api/contact.php`;
+  import.meta.env.VITE_CONTACT_API_URL ||
+  (import.meta.env.DEV
+    ? `${import.meta.env.BASE_URL}api/contact.php`
+    : "https://techintel.tech/api/contact.php");
 
 let recaptchaScriptPromise;
 
