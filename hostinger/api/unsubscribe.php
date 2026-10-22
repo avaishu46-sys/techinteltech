@@ -1,6 +1,13 @@
 <?php
 declare(strict_types=1);
 
+/*
+ * Table + column that hold your SUBSCRIBERS (the people who signed up).
+ * Change these two lines if your subscribe table is named differently.
+ */
+const SUBSCRIBERS_TABLE = 'Subscribe';
+const SUBSCRIBERS_EMAIL_COLUMN = 'email';
+
 function respond(int $status, array $payload): void
 {
     http_response_code($status);
@@ -13,7 +20,7 @@ function respond(int $status, array $payload): void
 $allowedOrigins = [
     'http://localhost:5173',
     'http://127.0.0.1:5173',
-    'https://hbnvlbq7-5173.inc1.devtunnels.ms/',
+    'https://hbnvlbq7-5173.inc1.devtunnels.ms',
 ];
 $origin = $_SERVER['HTTP_ORIGIN'] ?? '';
 
@@ -96,6 +103,28 @@ try {
         ]
     );
 
+    // 1. Is this email actually subscribed?
+    $subscribed = $pdo->prepare(
+        'SELECT 1 FROM `' . SUBSCRIBERS_TABLE . '` WHERE `' . SUBSCRIBERS_EMAIL_COLUMN . '` = :email LIMIT 1'
+    );
+    $subscribed->execute([':email' => $email]);
+
+    if ($subscribed->fetchColumn() === false) {
+        respond(404, [
+            'status' => 'not_found',
+            'error' => 'This email address is not subscribed.',
+        ]);
+    }
+
+    // 2. Already unsubscribed? Don't add a duplicate row.
+    $alreadyUnsubscribed = $pdo->prepare('SELECT 1 FROM `Unsubscribe` WHERE `email` = :email LIMIT 1');
+    $alreadyUnsubscribed->execute([':email' => $email]);
+
+    if ($alreadyUnsubscribed->fetchColumn() !== false) {
+        respond(200, ['message' => 'Your unsubscribe request has been recorded.']);
+    }
+
+    // 3. Record the unsubscribe request.
     $statement = $pdo->prepare('INSERT INTO `Unsubscribe` (`email`) VALUES (:email)');
     $statement->execute([':email' => $email]);
 } catch (PDOException $error) {

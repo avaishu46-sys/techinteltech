@@ -2,26 +2,32 @@ import SectionLabel from "../components/SectionLabel";
 
 const sections = [
   {
-    title: "How and why is this important?",
+    title: "How & Why is this important?",
     content: [
-      "The GDPR was created to regulate how businesses use data and to ensure consistent protection across the European Union. It applies to smaller businesses as well as large corporations, and non-compliance can result in significant financial penalties.",
+      "The GDPR was created to regulate how businesses use data, ensuring it’s the same across the entire EU. Although it will apply to smaller businesses as well as large corporations, recent high-profile scandals have demonstrated how big organisation’s will have to comply to a single set of rules. The main implications of contravention of the GDPR for businesses, could be financial penalties.",
     ],
   },
   {
     title: "Does this affect you?",
     content: [
-      "Any business that processes an EU data subject's information, whether it is based inside or outside the EU, is subject to the regulation and must follow its requirements.",
-      "TechIntel is concerned with processing data and making it available to business customers for direct marketing. This activity is classified as a legitimate interest when carried out in line with applicable law.",
+      "Any business that processes an EU Data Subject’s data, whether you are in the EU or outside of it, will be subject to the regulation and will have to abide by the rules it lays out for processing data.",
+      <>
+        Techintel is concerned with the purposes of processing data and making
+        it available to business customers for direct marketing and this is
+        classified as <strong>‘Legitimate Interest’</strong>.
+      </>,
+      "Techintel relies on the legitimate interest precedent as an appropriate legal basis under the applicable Data Protection Laws to provide Business Data to its customers.",
+      "Customers may use the business data for the sending of B2B direct marketing communications if they do so in line with the relevant laws. The initiator may conduct such marketing activity under an opt-out / unsubscribe basis, where employees of a public or corporate entity are contacted for the purposes of direct marketing.",
     ],
   },
-  {
-    title: "Legitimate interest",
-    content: [
-      "TechIntel relies on legitimate interest as an appropriate legal basis under applicable data protection laws when providing business data to its customers.",
-    ],
-    callout:
-      "Customers may use business data to send B2B direct marketing communications when they comply with relevant laws. Marketing activity may be conducted on an opt-out or unsubscribe basis where permitted.",
-  },
+  // {
+  //   title: "Legitimate interest",
+  //   content: [
+  //     "TechIntel relies on legitimate interest as an appropriate legal basis under applicable data protection laws when providing business data to its customers.",
+  //   ],
+  //   callout:
+  //     "Customers may use business data to send B2B direct marketing communications when they comply with relevant laws. Marketing activity may be conducted on an opt-out or unsubscribe basis where permitted.",
+  // },
 ];
 
 const readinessPoints = [
@@ -62,8 +68,11 @@ function GDPRPolicy() {
                 <h2 className="border-l-4 border-cyan-500 pl-4 text-2xl font-semibold text-slate-950">
                   {section.title}
                 </h2>
-                {section.content.map((paragraph) => (
-                  <p key={paragraph} className="mt-5 leading-8 text-slate-600">
+                {section.content.map((paragraph, index) => (
+                  <p
+                    key={`${section.title}-${index}`}
+                    className="mt-5 leading-8 text-slate-600"
+                  >
                     {paragraph}
                   </p>
                 ))}

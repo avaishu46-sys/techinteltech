@@ -61,7 +61,7 @@ function Navbar() {
     >
       <nav className="w-full">
         <div className="relative border-b border-transparent bg-transparent shadow-none backdrop-blur-none">
-          <div className="grid h-16 grid-cols-[1fr_auto_1fr] items-center px-5 sm:px-8 lg:h-18 lg:px-12">
+          <div className="grid h-16 grid-cols-[1fr_auto_1fr] items-center px-5 sm:px-8 lg:h-17 lg:px-12">
             <Link
               to="/"
               onClick={() => setIsOpen(false)}
@@ -71,7 +71,7 @@ function Navbar() {
               <img
                 src={logo}
                 alt="TechIntel"
-                className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.03] sm:h-14"
+                className="h-9 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.03] sm:h-14"
               />
             </Link>
 

@@ -29,7 +29,7 @@ function Footer() {
               <img
                 src={logo}
                 alt="TechIntel"
-                className="h-[60px] w-auto object-contain"
+                className="h-[55px] w-auto object-contain"
               />
             </Link>
             <address className="mt-6 max-w-[340px] space-y-2 text-base not-italic leading-6 text-slate-700">
