@@ -5,7 +5,7 @@ declare(strict_types=1);
  * Table + column that hold your SUBSCRIBERS (the people who signed up).
  * Change these two lines if your subscribe table is named differently.
  */
-const SUBSCRIBERS_TABLE = 'Subscribe';
+const SUBSCRIBERS_TABLE = 'subscribers';
 const SUBSCRIBERS_EMAIL_COLUMN = 'email';
 
 function respond(int $status, array $payload): void
@@ -104,33 +104,55 @@ try {
         ]
     );
 
-    // 1. Is this email actually subscribed?
+    $pdo->beginTransaction();
+
+    // Is this email currently subscribed?
     $subscribed = $pdo->prepare(
-        'SELECT 1 FROM `' . SUBSCRIBERS_TABLE . '` WHERE `' . SUBSCRIBERS_EMAIL_COLUMN . '` = :email LIMIT 1'
+        'SELECT 1 FROM `' . SUBSCRIBERS_TABLE . '` WHERE LOWER(`' . SUBSCRIBERS_EMAIL_COLUMN . '`) = :email LIMIT 1'
     );
     $subscribed->execute([':email' => $email]);
 
     if ($subscribed->fetchColumn() === false) {
+        $alreadyUnsubscribed = $pdo->prepare('SELECT 1 FROM `Unsubscribe` WHERE LOWER(`email`) = :email LIMIT 1');
+        $alreadyUnsubscribed->execute([':email' => $email]);
+        $pdo->commit();
+
+        if ($alreadyUnsubscribed->fetchColumn() !== false) {
+            respond(200, [
+                'status' => 'already_unsubscribed',
+                'message' => 'Your unsubscribe request has already been recorded.',
+            ]);
+        }
+
         respond(404, [
             'status' => 'not_found',
             'error' => 'This email address is not subscribed.',
         ]);
     }
 
-    // 2. Already unsubscribed? Don't add a duplicate row.
-    $alreadyUnsubscribed = $pdo->prepare('SELECT 1 FROM `Unsubscribe` WHERE `email` = :email LIMIT 1');
+    $alreadyUnsubscribed = $pdo->prepare('SELECT 1 FROM `Unsubscribe` WHERE LOWER(`email`) = :email LIMIT 1');
     $alreadyUnsubscribed->execute([':email' => $email]);
 
-    if ($alreadyUnsubscribed->fetchColumn() !== false) {
-        respond(200, ['message' => 'Your unsubscribe request has been recorded.']);
+    if ($alreadyUnsubscribed->fetchColumn() === false) {
+        $statement = $pdo->prepare('INSERT INTO `Unsubscribe` (`email`) VALUES (:email)');
+        $statement->execute([':email' => $email]);
     }
 
-    // 3. Record the unsubscribe request.
-    $statement = $pdo->prepare('INSERT INTO `Unsubscribe` (`email`) VALUES (:email)');
-    $statement->execute([':email' => $email]);
+    $delete = $pdo->prepare(
+        'DELETE FROM `' . SUBSCRIBERS_TABLE . '` WHERE LOWER(`' . SUBSCRIBERS_EMAIL_COLUMN . '`) = :email'
+    );
+    $delete->execute([':email' => $email]);
+    $pdo->commit();
 } catch (PDOException $error) {
+    if (isset($pdo) && $pdo->inTransaction()) {
+        $pdo->rollBack();
+    }
+
     error_log('TechIntel unsubscribe database request failed: ' . $error->getMessage());
     respond(500, ['error' => 'We could not record your request. Please try again later.']);
 }
 
-respond(201, ['message' => 'Your unsubscribe request has been recorded.']);
+respond(201, [
+    'status' => 'unsubscribed',
+    'message' => 'Your unsubscribe request has been recorded.',
+]);

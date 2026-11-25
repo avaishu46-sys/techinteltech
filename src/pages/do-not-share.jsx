@@ -19,6 +19,7 @@ function DoNotShare() {
   const [errors, setErrors] = useState({});
   const [submitting, setSubmitting] = useState(false);
   const [submitted, setSubmitted] = useState(false);
+  const [submissionError, setSubmissionError] = useState("");
 
   // Load countries
   useEffect(() => {
@@ -58,7 +59,6 @@ function DoNotShare() {
       [name]: type === "checkbox" ? checked : value,
     }));
 
-    // Remove field error while typing
     if (errors[name]) {
       setErrors((prev) => ({
         ...prev,
@@ -107,7 +107,7 @@ function DoNotShare() {
     return Object.keys(newErrors).length === 0;
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     if (!validateForm()) {
@@ -115,12 +115,32 @@ function DoNotShare() {
     }
 
     setSubmitting(true);
+    setSubmissionError("");
 
-    // Temporary submission simulation
-    setTimeout(() => {
-      setSubmitting(false);
+    try {
+      const body = new URLSearchParams({
+        "form-name": "privacy-request",
+        firstName: formData.firstName.trim(),
+        lastName: formData.lastName.trim(),
+        email: formData.email.trim(),
+        phone: formData.phone.trim(),
+        company: formData.company.trim(),
+        jobTitle: formData.jobTitle.trim(),
+        country: formData.country,
+        agreement: formData.agreement ? "Yes" : "No",
+        "bot-field": "",
+      });
+      const response = await fetch("/", {
+        method: "POST",
+        headers: { "Content-Type": "application/x-www-form-urlencoded" },
+        body: body.toString(),
+      });
+
+      if (!response.ok) {
+        throw new Error("We couldn't save your request. Please try again.");
+      }
+
       setSubmitted(true);
-
       setFormData({
         firstName: "",
         lastName: "",
@@ -131,7 +151,15 @@ function DoNotShare() {
         country: "",
         agreement: false,
       });
-    }, 2000);
+    } catch (error) {
+      setSubmissionError(
+        error instanceof Error
+          ? error.message
+          : "We couldn't save your request. Please try again."
+      );
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   return (
@@ -175,7 +203,22 @@ function DoNotShare() {
                   </p>
                 </div>
 
-                <form onSubmit={handleSubmit} noValidate>
+                <form
+                  name="privacy-request"
+                  method="POST"
+                  data-netlify="true"
+                  data-netlify-honeypot="bot-field"
+                  onSubmit={handleSubmit}
+                  noValidate
+                >
+                  <input type="hidden" name="form-name" value="privacy-request" />
+                  <input
+                    type="text"
+                    name="bot-field"
+                    tabIndex={-1}
+                    autoComplete="off"
+                    className="hidden"
+                  />
                   <div className="grid gap-6 sm:grid-cols-2">
 
                     {/* First Name */}
@@ -419,6 +462,15 @@ function DoNotShare() {
                     </div>
 
                     {/* Submit */}
+                    {submissionError && (
+                      <p
+                        role="alert"
+                        className="text-sm text-red-600 sm:col-span-2"
+                      >
+                        {submissionError}
+                      </p>
+                    )}
+
                     <div className="flex justify-center pt-4 sm:col-span-2">
                       <button
                         type="submit"

@@ -94,8 +94,18 @@ Build the site with `npm run build` and upload the contents of `dist/` to
 `public_html/`. Use HTTPS, then submit a test unsubscribe request and check
 phpMyAdmin's `Unsubscribe` table for the new email.
 
-This endpoint records unsubscribe requests only. It does not remove addresses
-from any separate newsletter or email-marketing platform.
+The unsubscribe endpoint records the request in `Unsubscribe` and removes the
+address from the active `subscribers` table. If you also send email from a
+separate newsletter or email-marketing platform, that platform must be updated
+separately or connected to this endpoint.
+
+## Save privacy requests on Netlify
+
+The Do Not Share or Sell form is captured by Netlify Forms. The form definition
+is included in `index.html` so Netlify can detect it when building the site.
+After deploying, open the Netlify site dashboard and choose **Forms** to view
+`privacy-request` submissions. If Netlify form detection is disabled, enable it
+in the site's **Forms** settings and redeploy.
 
 ## Newsletter subscriber table
 
